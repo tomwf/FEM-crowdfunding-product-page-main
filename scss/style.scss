@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap');
+/********** Colors **********/
+/********** Primary **********/
+$moderate-cyan: hsl(176, 50%, 47%);
+$dark-cyan: hsl(176, 72%, 28%);
+/********** Neutral **********/
+$black: hsl(0, 0%, 0%);
+$dark-gray: hsl(0, 0%, 48%);
+/********** Custom **********/
+$white: hsl(360, 100%, 100%);
+$light-gray: hsl(0, 0%, 83%);
+$very-light-gray-bg: hsl(0, 0%, 98%);
+$card-border-radius: 6px;
+$round-border: 2em;
+$black-gradient-transparent: linear-gradient(hsla(0, 0%, 0%, .5), hsla(0, 0%, 0%, 0));
+$black-transparent: hsla(0, 0%, 0%, 0.5);
+
+$transparent: hsla(0, 0%, 0%, 0);
+/********** Mixins **********/
+@mixin bold-figures {
+  color: $black;
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $very-light-gray-bg;
+  font-family: 'Commissioner', sans-serif;
+  position: relative;
+}
+
+img {
+  color: transparent;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  font-size: .80rem;
+  line-height: 1.8; 
+  color: $dark-gray;
+}
+
+header {
+  position: relative;
+  height: 200px;
+  padding: 1.75em 1.3em;
+
+  & > img {
+    background: url('../images/image-hero-mobile.jpg') center/contain no-repeat;
+    display: inline-block;
+    height: 300px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+
+    & > a {
+      background: url('../images/logo.svg') center/contain no-repeat;
+      width: 128px;
+      height: 20px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+
+      #hamburger-btn {
+        background: url('../images/icon-hamburger.svg') center/contain no-repeat;
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+      }
+
+      &__wrapper {
+        background: $black-gradient-transparent;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 1;
+
+        &--hidden {
+          display: none;
+        }
+      }
+
+      &__mobile {
+        background-color: $white;
+        border-radius: 8px;
+        position: absolute;
+        right: 1.5em;
+        top: 5em;
+        width: calc(100% - 3em);
+        z-index: 1;
+
+        a {
+          padding: 1.75em 1.5em;
+          display: block;
+          border-bottom: 1px solid $light-gray;
+          font-weight: 500;
+        }
+
+        a:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+main {
+  background-color: transparent;
+  padding: 0 1.5em;
+
+  .container {
+    background-color: $white;
+    border: 1px solid $light-gray;
+    border-radius: $card-border-radius;
+    margin-bottom: 1.5em;
+    padding: 2.5em 1.5em;
+
+    .cyan-btn {
+      background-color: $moderate-cyan;
+      color: $white;
+      padding: 1em 2.5em;
+      border-radius: 5em;
+      font-weight: 500;
+      letter-spacing: .5px;
+
+      &--disabled {
+        cursor: default;
+        background-color: $dark-gray;
+      }
+    }
+  }
+
+  .presentation {
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1em;
+    padding-top: 3.25em;
+
+    img {
+      position: absolute;
+      top: -2em;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    & > div {
+      display: flex;
+      gap: .5em;
+
+      #bookmark-btn {
+        background: url('../images/icon-bookmark.svg') center/contain no-repeat;
+        width: 52px;
+        height: 52px;
+      }
+    }
+  }
+
+  .progress {
+    text-align: center;
+
+    &__figures {
+      @include bold-figures;
+      margin-bottom: .25em;
+    }
+
+    hr {
+      background-color: $light-gray;
+      border: none;
+      height: 1px;
+      width: 100px;
+      margin: 1.25em auto;
+    }
+
+    #progress-bar {
+      background-color: $light-gray;
+      border-radius: $round-border;
+      height: 12px;
+      margin-top: 1.75em;
+
+      span {
+        background-color: $moderate-cyan;
+        border-radius: $round-border;
+        display: block;
+        width: 75%;
+        height: 100%;
+      }
+    }
+  }
+
+  .select-reward {
+
+    h3,
+    p {
+      margin-bottom: 1.5em;
+    }
+
+    .card {
+      border: 1px solid $light-gray;
+      border-radius: $card-border-radius;
+      padding: 1.5em;
+      margin-bottom: 1.5em;
+
+      h5 {
+        margin-bottom: .3em;
+      }
+
+      .cyan-text {
+        color: $moderate-cyan;
+        font-size: .8rem;
+        display: inline-block;
+      }
+
+      &__figures {
+        @include bold-figures;
+      }
+
+      &--disabled {
+        opacity: .5;
+      }
+    }
+
+    .card:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .about {
+
+    .cyan-text {
+      margin-bottom: 1.9em;
+    }
+  }
+
+  .back-project {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $black-transparent;
+    padding: 1.5em;
+    height: 100%;
+
+    &--hidden {
+      display: none;
+    }
+
+    .select-reward {
+      position: relative;
+      top: 6em;
+
+      & > div:first-child {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5em;
+
+        h3 { margin: 0; }
+
+        #close-btn {
+          background: url('../images/icon-close-modal.svg') center/contain no-repeat;
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      label {
+        $radio-width: 25px;
+        $radio-border: 2px;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.9em;
+        padding-left: 2.5em;
+
+        input {
+          cursor: pointer;
+          opacity: 0;
+          position: absolute;
+        }
+
+        .checkmark {
+          width: $radio-width;
+          height: $radio-width;
+          border: $radio-border solid $light-gray;
+          border-radius: 50%;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+        }
+
+        .checkmark::after {
+          background-color: $moderate-cyan;
+          content: '';
+          position: absolute;
+          display: none;
+          border-radius: 50%;
+          height: 12px;
+          width: 12px;
+          top: 50%;
+          left: calc(($radio-width - ($radio-border * 2)) / 2);
+          transform: translate(-50%, -50%);
+        }
+
+        input:checked ~ .checkmark::after {
+          display: block;
+        }
+      }
+
+      .card.card--highlighted {
+        border: 1px solid $transparent;
+        outline: 2px solid $moderate-cyan;
+      }
+
+      .card:nth-child(3) {
+        h5 {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
