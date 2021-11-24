@@ -19,7 +19,7 @@ $('#close-btn').click(function() {
 // Selected card's outline behaviour
 let selectedReward;
 $('input[name=radio]').change(function() {
-  const card = this.parentNode.parentNode;
+  const card = this.parentNode.parentNode.parentNode;
 
   if (selectedReward) {
     selectedReward.classList.toggle('card--highlighted'); // Remove previously selected card's outline
