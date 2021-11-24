@@ -10,11 +10,11 @@ $dark-gray: hsl(0, 0%, 48%);
 $white: hsl(360, 100%, 100%);
 $light-gray: hsl(0, 0%, 83%);
 $very-light-gray-bg: hsl(0, 0%, 98%);
+$card-padding: 1.5em;
 $card-border-radius: 6px;
 $round-border: 2em;
 $black-gradient-transparent: linear-gradient(hsla(0, 0%, 0%, .5), hsla(0, 0%, 0%, 0));
 $black-transparent: hsla(0, 0%, 0%, 0.5);
-
 $transparent: hsla(0, 0%, 0%, 0);
 /********** Mixins **********/
 @mixin bold-figures {
@@ -24,7 +24,9 @@ $transparent: hsla(0, 0%, 0%, 0);
   font-weight: 700;
 }
 
-* {
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -155,6 +157,10 @@ main {
         background-color: $dark-gray;
       }
     }
+
+    .cyan-btn:hover {
+      background-color: $dark-cyan;
+    }
   }
 
   .presentation {
@@ -227,11 +233,15 @@ main {
     .card {
       border: 1px solid $light-gray;
       border-radius: $card-border-radius;
-      padding: 1.5em;
+      padding: $card-padding;
       margin-bottom: 1.5em;
 
       h5 {
         margin-bottom: .3em;
+      }
+
+      &:not(.card--disabled) h5:hover {
+        color: $moderate-cyan;
       }
 
       .cyan-text {
@@ -266,7 +276,7 @@ main {
     top: 0;
     left: 0;
     background: $black-transparent;
-    padding: 1.5em;
+    padding: $card-padding;
     height: 100%;
 
     &--hidden {
@@ -335,6 +345,75 @@ main {
         input:checked ~ .checkmark::after {
           display: block;
         }
+
+        h5:hover ~ .checkmark {
+          border: 2px solid $moderate-cyan;
+        }
+      }
+
+      .pledge {
+        text-align: center;
+        padding-top: 3em;
+        position: relative;
+
+        hr {
+          position: absolute;
+          width: calc(100% + 3em);
+          top: $card-padding;
+          left: -$card-padding;
+          border: 1px solid $light-gray;
+        }
+
+        & > div {
+          display: flex;
+          gap: 1em;
+
+          & > div {
+            width: 50%;
+            position: relative;
+
+            /********** Remove arrows **********/
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            /* Firefox */
+            input[type=number] {
+              cursor: pointer;
+              -moz-appearance: textfield;
+              border: 1px solid $light-gray;
+              border-radius: $round-border;
+              padding: 1em 2em;
+              width: 100%;
+              text-align: right;
+            }
+
+            input[type=number]::before {
+              content: '$';
+            }
+          }
+
+          & > div::before {
+            content: '$';
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            transform: translate(-50%, -45%);
+          }
+
+          button {
+            padding: 1em 2em;
+          }
+        }
+      }
+
+      .pledge.pledge--hidden {
+        display: none;
       }
 
       .card.card--highlighted {
@@ -348,5 +427,43 @@ main {
         }
       }
     }
+  }
+
+  .thank-you {
+    background-color: $black-transparent;
+    //position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border: none;
+    border-radius: initial;
+    position: fixed;
+    //top: 50%;
+    //left: 50%;
+    //transform: translate(-50%, -50%);
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1em;
+      background-color: $white;
+      border: 1px solid $light-gray;
+      border-radius: $card-border-radius;
+      padding: $card-padding;
+      margin-bottom: 1.5em;
+      position: relative;
+      top: 15%;
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+
+  .thank-you.thank-you--hidden {
+    display: none;
   }
 }

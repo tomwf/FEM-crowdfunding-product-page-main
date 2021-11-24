@@ -4,7 +4,9 @@
 /********** Neutral **********/
 /********** Custom **********/
 /********** Mixins **********/
-* {
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -124,6 +126,9 @@ main .container .cyan-btn--disabled {
   cursor: default;
   background-color: #7a7a7a;
 }
+main .container .cyan-btn:hover {
+  background-color: #147b74;
+}
 main .presentation {
   text-align: center;
   position: relative;
@@ -190,6 +195,9 @@ main .select-reward .card {
 }
 main .select-reward .card h5 {
   margin-bottom: 0.3em;
+}
+main .select-reward .card:not(.card--disabled) h5:hover {
+  color: #3cb4ac;
 }
 main .select-reward .card .cyan-text {
   color: #3cb4ac;
@@ -278,12 +286,100 @@ main .back-project .select-reward label .checkmark::after {
 main .back-project .select-reward label input:checked ~ .checkmark::after {
   display: block;
 }
+main .back-project .select-reward label h5:hover ~ .checkmark {
+  border: 2px solid #3cb4ac;
+}
+main .back-project .select-reward .pledge {
+  text-align: center;
+  padding-top: 3em;
+  position: relative;
+}
+main .back-project .select-reward .pledge hr {
+  position: absolute;
+  width: calc(100% + 3em);
+  top: 1.5em;
+  left: -1.5em;
+  border: 1px solid #d4d4d4;
+}
+main .back-project .select-reward .pledge > div {
+  display: flex;
+  gap: 1em;
+}
+main .back-project .select-reward .pledge > div > div {
+  width: 50%;
+  position: relative;
+  /********** Remove arrows **********/
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
+}
+main .back-project .select-reward .pledge > div > div input::-webkit-outer-spin-button,
+main .back-project .select-reward .pledge > div > div input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+main .back-project .select-reward .pledge > div > div input[type=number] {
+  cursor: pointer;
+  -moz-appearance: textfield;
+  border: 1px solid #d4d4d4;
+  border-radius: 2em;
+  padding: 1em 2em;
+  width: 100%;
+  text-align: right;
+}
+main .back-project .select-reward .pledge > div > div input[type=number]::before {
+  content: "$";
+}
+main .back-project .select-reward .pledge > div > div::before {
+  content: "$";
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -45%);
+}
+main .back-project .select-reward .pledge > div button {
+  padding: 1em 2em;
+}
+main .back-project .select-reward .pledge.pledge--hidden {
+  display: none;
+}
 main .back-project .select-reward .card.card--highlighted {
   border: 1px solid rgba(0, 0, 0, 0);
   outline: 2px solid #3cb4ac;
 }
 main .back-project .select-reward .card:nth-child(3) h5 {
   margin: 0;
+}
+main .thank-you {
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  height: 100%;
+  border: none;
+  border-radius: initial;
+  position: fixed;
+}
+main .thank-you .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1em;
+  background-color: white;
+  border: 1px solid #d4d4d4;
+  border-radius: 6px;
+  padding: 1.5em;
+  margin-bottom: 1.5em;
+  position: relative;
+  top: 15%;
+}
+main .thank-you .card img {
+  width: 50px;
+  height: 50px;
+}
+main .thank-you.thank-you--hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

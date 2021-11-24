@@ -23,8 +23,23 @@ $('input[name=radio]').change(function() {
 
   if (selectedReward) {
     selectedReward.classList.toggle('card--highlighted'); // Remove previously selected card's outline
+    selectedReward.querySelector('.pledge').classList.toggle('pledge--hidden');
   }
 
   card.classList.toggle('card--highlighted'); // Add outline
+  card.querySelector('.pledge').classList.toggle('pledge--hidden');
   selectedReward = card;
+});
+
+$('.continue-btn').click(function() {
+  const pledgeInput = this.previousElementSibling.querySelector('input');
+
+  if (pledgeInput.value) {
+    $('.back-project').toggleClass('back-project--hidden');
+    $('.thank-you').toggleClass('thank-you--hidden');
+  }
+});
+
+$('#gotit-btn').click(function() {
+  $('.thank-you').toggleClass('thank-you--hidden');
 });
