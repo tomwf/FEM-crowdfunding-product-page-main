@@ -424,18 +424,14 @@ main {
               font-weight: 700;
             }
 
-            input[type=number]::before {
-              content: '$';
-            }
-
-            &::before {
-              content: '$';
+            span {
               width: 25px;
               height: 25px;
               position: absolute;
               top: 50%;
               left: 20%;
               transform: translate(-50%, -45%);
+              color: $dark-gray;
             }
           }
 
@@ -573,7 +569,7 @@ main {
     .progress {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeant(2, auto);
+      grid-template-rows: repeat(2, auto);
 
       & > div {
         grid-column: span 1;

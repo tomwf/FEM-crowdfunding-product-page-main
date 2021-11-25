@@ -347,17 +347,14 @@ main .back-project .select-reward .pledge > div > div input[type=number] {
   font-family: inherit;
   font-weight: 700;
 }
-main .back-project .select-reward .pledge > div > div input[type=number]::before {
-  content: "$";
-}
-main .back-project .select-reward .pledge > div > div::before {
-  content: "$";
+main .back-project .select-reward .pledge > div > div span {
   width: 25px;
   height: 25px;
   position: absolute;
   top: 50%;
   left: 20%;
   transform: translate(-50%, -45%);
+  color: #7a7a7a;
 }
 main .back-project .select-reward .pledge > div button {
   padding: 1em 2em;
@@ -449,7 +446,7 @@ main .thank-you.thank-you--hidden {
   main .progress {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeant(2, auto);
+    grid-template-rows: repeat(2, auto);
   }
   main .progress > div {
     grid-column: span 1;
