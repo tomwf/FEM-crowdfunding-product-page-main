@@ -47,6 +47,7 @@ Users should be able to:
 - CSS Grid
 - Mobile-first workflow
 - Sass  
+- jQuery
 
 ### What I learned
 
