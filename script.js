@@ -43,3 +43,8 @@ $('.continue-btn').click(function() {
 $('#gotit-btn').click(function() {
   $('.thank-you').toggleClass('thank-you--hidden');
 });
+
+/********** Bookmark button **********/
+$('#bookmark-btn').click(function() {
+  this.classList.toggle('bookmarked');
+});

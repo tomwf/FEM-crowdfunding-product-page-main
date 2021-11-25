@@ -2,7 +2,8 @@
 /********** Colors **********/
 /********** Primary **********/
 /********** Neutral **********/
-/********** Custom **********/
+/********** Custom colors**********/
+/********** Custom styling **********/
 /********** Mixins **********/
 *,
 *::before,
@@ -25,6 +26,7 @@ img {
 button {
   cursor: pointer;
   border: none;
+  background: none;
 }
 
 a {
@@ -102,10 +104,15 @@ header > div .menu__mobile a {
 header > div .menu__mobile a:last-child {
   border-bottom: none;
 }
+header > div .menu__desktop {
+  display: none;
+}
 
 main {
   background-color: transparent;
   padding: 0 1.5em;
+  max-width: 750px;
+  margin: 0 auto;
 }
 main .container {
   background-color: white;
@@ -148,10 +155,16 @@ main .presentation > div {
   display: flex;
   gap: 0.5em;
 }
-main .presentation > div #bookmark-btn {
+main .presentation > div #bookmark-btn span {
+  display: none;
+}
+main .presentation > div #bookmark-btn div {
   background: url("../images/icon-bookmark.svg") center/contain no-repeat;
   width: 52px;
   height: 52px;
+}
+main .presentation > div #bookmark-btn.bookmarked > div {
+  background: url("../images/icon-bookmarked.svg") center/contain no-repeat;
 }
 main .progress {
   text-align: center;
@@ -229,6 +242,7 @@ main .back-project {
   background: rgba(0, 0, 0, 0.5);
   padding: 1.5em;
   height: 100%;
+  width: 100%;
 }
 main .back-project--hidden {
   display: none;
@@ -236,6 +250,8 @@ main .back-project--hidden {
 main .back-project .select-reward {
   position: relative;
   top: 6em;
+  max-width: 750px;
+  margin: 0 auto;
 }
 main .back-project .select-reward > div:first-child {
   display: flex;
@@ -360,6 +376,7 @@ main .thank-you {
   background-color: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
+  width: 100%;
   height: 100%;
   border: none;
   border-radius: initial;
@@ -370,14 +387,15 @@ main .thank-you .card {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 1em;
+  gap: 1.5em;
   background-color: white;
   border: 1px solid #d4d4d4;
   border-radius: 6px;
-  padding: 1.5em;
-  margin-bottom: 1.5em;
+  padding: 2em 1.5em;
+  margin: auto;
   position: relative;
   top: 15%;
+  max-width: 500px;
 }
 main .thank-you .card img {
   width: 50px;
@@ -385,6 +403,109 @@ main .thank-you .card img {
 }
 main .thank-you.thank-you--hidden {
   display: none;
+}
+
+@media (min-width: 375px) {
+  header > img {
+    background: url("../images/image-hero-desktop.jpg") center/cover no-repeat;
+  }
+}
+@media (min-width: 500px) {
+  header > div .menu #hamburger-btn {
+    display: none;
+  }
+  header > div .menu__wrapper {
+    display: none;
+  }
+  header > div .menu__desktop {
+    display: flex;
+    gap: 2em;
+    color: white;
+  }
+
+  main .presentation > div {
+    justify-content: space-around;
+    width: 100%;
+  }
+  main .presentation > div #bookmark-btn {
+    display: flex;
+    background-color: #d4d4d4;
+    border-radius: 2em;
+  }
+  main .presentation > div #bookmark-btn::after {
+    content: "Bookmark";
+    margin: auto;
+    padding: 1em 2em 1em 1em;
+    font-weight: 700;
+    color: #7a7a7a;
+  }
+  main .presentation > div #bookmark-btn.bookmarked {
+    background-color: #f4f8f9;
+  }
+  main .presentation > div #bookmark-btn.bookmarked::after {
+    content: "Bookmarked";
+    color: #3cb4ac;
+  }
+  main .progress {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeant(2, auto);
+  }
+  main .progress > div {
+    grid-column: span 1;
+    text-align: left;
+  }
+  main .progress > div hr {
+    display: none;
+  }
+  main .progress > div:nth-child(2) {
+    border-left: 1px solid #d4d4d4;
+    border-right: 1px solid #d4d4d4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main .progress > div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main .progress #progress-bar {
+    grid-column: span 3;
+  }
+  main .back-project .select-reward .card {
+    position: relative;
+  }
+  main .back-project .select-reward .card p {
+    margin: 0;
+  }
+  main .back-project .select-reward .card label div {
+    display: flex;
+    gap: 1em;
+  }
+  main .back-project .select-reward .card label div h5 {
+    margin: 0;
+  }
+  main .back-project .select-reward .card > p:nth-child(3) {
+    position: absolute;
+    right: 1.5em;
+    top: 1.5em;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  main .back-project .select-reward .card > p:nth-child(3) .card__figures {
+    font-size: 1rem;
+  }
+  main .back-project .select-reward .card .pledge {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  main .back-project .select-reward .card .pledge > div:nth-child(3) > div {
+    width: 115px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

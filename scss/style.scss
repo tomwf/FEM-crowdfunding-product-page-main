@@ -6,16 +6,18 @@ $dark-cyan: hsl(176, 72%, 28%);
 /********** Neutral **********/
 $black: hsl(0, 0%, 0%);
 $dark-gray: hsl(0, 0%, 48%);
-/********** Custom **********/
+/********** Custom colors**********/
 $white: hsl(360, 100%, 100%);
 $light-gray: hsl(0, 0%, 83%);
 $very-light-gray-bg: hsl(0, 0%, 98%);
-$card-padding: 1.5em;
-$card-border-radius: 6px;
-$round-border: 2em;
 $black-gradient-transparent: linear-gradient(hsla(0, 0%, 0%, .5), hsla(0, 0%, 0%, 0));
 $black-transparent: hsla(0, 0%, 0%, 0.5);
 $transparent: hsla(0, 0%, 0%, 0);
+$light-cyan: rgb(244, 248, 249);
+/********** Custom styling **********/
+$card-padding: 1.5em;
+$card-border-radius: 6px;
+$round-border: 2em;
 /********** Mixins **********/
 @mixin bold-figures {
   color: $black;
@@ -45,6 +47,7 @@ img {
 button {
   cursor: pointer;
   border: none;
+  background: none;
 }
 
 a {
@@ -129,6 +132,10 @@ header {
           border-bottom: none;
         }
       }
+
+      &__desktop {
+        display: none;
+      }
     }
   }
 }
@@ -136,6 +143,8 @@ header {
 main {
   background-color: transparent;
   padding: 0 1.5em;
+  max-width: 750px;
+  margin: 0 auto;
 
   .container {
     background-color: $white;
@@ -184,9 +193,24 @@ main {
       gap: .5em;
 
       #bookmark-btn {
-        background: url('../images/icon-bookmark.svg') center/contain no-repeat;
-        width: 52px;
-        height: 52px;
+
+        span {
+          display: none;
+        }
+
+        div {
+          background: url('../images/icon-bookmark.svg') center/contain no-repeat;
+          width: 52px;
+          height: 52px;
+        }
+
+        &.bookmarked {
+
+
+          & > div {
+            background: url('../images/icon-bookmarked.svg') center/contain no-repeat;
+          }
+        }
       }
     }
   }
@@ -261,10 +285,10 @@ main {
       &--disabled {
         opacity: .5;
       }
-    }
 
-    .card:last-child {
-      margin-bottom: 0;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -282,6 +306,7 @@ main {
     background: $black-transparent;
     padding: $card-padding;
     height: 100%;
+    width: 100%;
 
     &--hidden {
       display: none;
@@ -290,6 +315,8 @@ main {
     .select-reward {
       position: relative;
       top: 6em;
+      max-width: 750px;
+      margin: 0 auto;
 
       & > div:first-child {
         display: flex;
@@ -335,19 +362,19 @@ main {
           top: 50%;
           left: 0;
           transform: translateY(-50%);
-        }
 
-        .checkmark::after {
-          background-color: $moderate-cyan;
-          content: '';
-          position: absolute;
-          display: none;
-          border-radius: 50%;
-          height: 12px;
-          width: 12px;
-          top: 50%;
-          left: calc(($radio-width - ($radio-border * 2)) / 2);
-          transform: translate(-50%, -50%);
+          &::after {
+            background-color: $moderate-cyan;
+            content: '';
+            position: absolute;
+            display: none;
+            border-radius: 50%;
+            height: 12px;
+            width: 12px;
+            top: 50%;
+            left: calc(($radio-width - ($radio-border * 2)) / 2);
+            transform: translate(-50%, -50%);
+          }
         }
 
         input:checked ~ .checkmark::after {
@@ -400,36 +427,39 @@ main {
             input[type=number]::before {
               content: '$';
             }
-          }
 
-          & > div::before {
-            content: '$';
-            width: 25px;
-            height: 25px;
-            position: absolute;
-            top: 50%;
-            left: 20%;
-            transform: translate(-50%, -45%);
+            &::before {
+              content: '$';
+              width: 25px;
+              height: 25px;
+              position: absolute;
+              top: 50%;
+              left: 20%;
+              transform: translate(-50%, -45%);
+            }
           }
 
           button {
             padding: 1em 2em;
           }
         }
+
+        &.pledge--hidden {
+          display: none;
+        }
       }
 
-      .pledge.pledge--hidden {
-        display: none;
-      }
+      .card {
 
-      .card.card--highlighted {
-        border: 1px solid $transparent;
-        outline: 2px solid $moderate-cyan;
-      }
+        &.card--highlighted {
+          border: 1px solid $transparent;
+          outline: 2px solid $moderate-cyan;
+        }
 
-      .card:nth-child(3) {
-        h5 {
-          margin: 0;
+        &:nth-child(3) {
+          h5 {
+            margin: 0;
+          }
         }
       }
     }
@@ -437,39 +467,193 @@ main {
 
   .thank-you {
     background-color: $black-transparent;
-    //position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
     height: 100%;
     border: none;
     border-radius: initial;
     position: fixed;
-    //top: 50%;
-    //left: 50%;
-    //transform: translate(-50%, -50%);
 
     .card {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 1em;
+      gap: $card-padding;
       background-color: $white;
       border: 1px solid $light-gray;
       border-radius: $card-border-radius;
-      padding: $card-padding;
-      margin-bottom: 1.5em;
+      padding:  2em $card-padding;
+      margin: auto;
       position: relative;
       top: 15%;
+      max-width: 500px;
 
       img {
         width: 50px;
         height: 50px;
       }
     }
+
+    &.thank-you--hidden {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 375px) {
+
+  header {
+
+    & > img {
+      background: url('../images/image-hero-desktop.jpg') center/cover no-repeat;
+    }
+  }
+}
+
+@media (min-width: 500px) {
+
+  header {
+
+    & > div {
+
+      .menu {
+
+        #hamburger-btn {
+          display: none;
+        }
+
+        &__wrapper {
+          display: none;
+        }
+
+        &__desktop {
+          display: flex;
+          gap: 2em;
+          color: $white;
+        }
+      }
+    }
   }
 
-  .thank-you.thank-you--hidden {
-    display: none;
+  main {
+
+    .presentation {
+
+      & > div {
+        justify-content: space-around;
+        width: 100%;
+
+        #bookmark-btn {
+          display: flex;
+          background-color: $light-gray;
+          border-radius: $round-border;
+
+          &::after {
+            content: 'Bookmark';
+            margin: auto;
+            padding: 1em 2em 1em 1em;
+            font-weight: 700;
+            color: $dark-gray;
+          }
+
+          &.bookmarked {
+            background-color: $light-cyan;
+
+            &::after {
+              content: 'Bookmarked';
+              color: $moderate-cyan;
+            }
+          }
+        }
+      }
+    }
+
+    .progress {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeant(2, auto);
+
+      & > div {
+        grid-column: span 1;
+        text-align: left;
+
+        hr {
+          display: none;
+        }
+      }
+
+      & > div:nth-child(2) {
+        border-left: 1px solid $light-gray;
+        border-right: 1px solid $light-gray;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      & > div:nth-child(3) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #progress-bar {
+        grid-column: span 3;
+      }
+    }
+
+    .back-project {
+
+      .select-reward {
+
+        .card {
+          position: relative;
+
+          p {
+            margin: 0;
+          }
+
+          label {
+
+            div {
+              display: flex;
+              gap: 1em;
+
+              h5 {
+                margin: 0;
+              }
+            }
+          }
+
+          & > p:nth-child(3) {
+            position: absolute;
+            right: $card-padding;
+            top: $card-padding;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            gap: .5em;
+
+            .card__figures {
+              font-size: 1rem;
+            }
+          }
+
+          .pledge {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            & > div:nth-child(3) {
+
+              & > div {
+                width: 115px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
